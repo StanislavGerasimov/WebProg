@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!DOCTYPE student SYSTEM "student.dtd">
+<?xml-stylesheet type="text/xsl" href="index.xsl"?>
+
+
+<student>
+    <surname>Герасімов</surname>
+    <name>Станіслав</name>
+    <patronymic>Віталійович</patronymic>
+    <previous_education>НВК 143</previous_education>
+    <faculty>ФКНТ</faculty>
+</student>

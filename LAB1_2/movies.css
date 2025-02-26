@@ -1,0 +1,48 @@
+movies {
+  display: block;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+movie {
+  display: block; /* Важливо! Це зробить кожен <movie> окремим блоком */
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+title {
+  display: block; /* Це дозволить елементу <title> відображатися в новому рядку */
+  font-size: 20px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+director {
+  display: block; /* Відображення на новому рядку */
+  font-size: 18px;
+  color: #2980b9;
+}
+
+year {
+  display: block; /* Відображення на новому рядку */
+  font-size: 16px;
+  color: #16a085;
+}
+
+genre {
+  display: block; /* Відображення на новому рядку */
+  font-size: 16px;
+  color: #e67e22;
+}
+
+rating {
+  display: block; /* Відображення на новому рядку */
+  font-size: 16px;
+  color: #27ae60;
+}
+
+movie:hover {
+  background-color: #ecf0f1;
+}

@@ -1,0 +1,8 @@
+<!ELEMENT movies (movie+)>
+<!ELEMENT movie (title, director, year, genre, rating)>
+<!ATTLIST movie id ID #REQUIRED>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT director (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT genre (#PCDATA)>
+<!ELEMENT rating (#PCDATA)>

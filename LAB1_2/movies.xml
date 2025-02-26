@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE movies SYSTEM "movies.dtd">
+<?xml-stylesheet type="text/css" href="movies.css"?>
+
+<movies>
+    <movie id="1">
+        <title>Інтерстеллар</title>
+        <director>Крістофер Нолан</director>
+        <year>2014</year>
+        <genre>Наукова фантастика</genre>
+        <rating>8.6</rating>
+    </movie>
+    <movie id="2">
+        <title>Темний лицар</title>
+        <director>Крістофер Нолан</director>
+        <year>2008</year>
+        <genre>Бойовик, Драма</genre>
+        <rating>9.0</rating>
+    </movie>
+    <movie id="3">
+        <title>Початок</title>
+        <director>Крістофер Нолан</director>
+        <year>2010</year>
+        <genre>Наукова фантастика, Трилер</genre>
+        <rating>8.8</rating>
+    </movie>
+    <movie id="4">
+        <title>Шоушенк</title>
+        <director>Френк Дарабонт</director>
+        <year>1994</year>
+        <genre>Драма</genre>
+        <rating>9.3</rating>
+    </movie>
+</movies>

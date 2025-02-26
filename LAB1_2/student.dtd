@@ -1,0 +1,6 @@
+<!ELEMENT student (name, surname, patronymic, previous_education, faculty)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT surname (#PCDATA)>
+<!ELEMENT patronymic (#PCDATA)>
+<!ELEMENT previous_education (#PCDATA)>
+<!ELEMENT faculty (#PCDATA)>
