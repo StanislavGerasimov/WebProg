@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Перевірка усного рахунку</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <style>
+    body {
+      background-color: aliceblue;
+    }
+
+    .center {
+      text-align: center;
+      margin: auto;
+    }
+
+    #keyboard {
+      text-align: center;
+      margin: auto;
+      border: 2px solid;
+    }
+
+    /* Розфарбування кнопок */
+    .button {
+      background-color: lightblue;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 5px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .button1 {
+      background-color: #ffcccb;
+    }
+    .button2 {
+      background-color: #ffecb3;
+    }
+    .button3 {
+      background-color: #c8e6c9;
+    }
+    .button4 {
+      background-color: #ffeb3b;
+    }
+    .button5 {
+      background-color: #80deea;
+    }
+  </style>
+
+  <script language="JavaScript">
+    var max_value,
+      operand1 = 0;
+    var operand2 = 0;
+    var result = 0;
+    var flag = 0;
+    var sign = "+";
+    var input = "";
+
+    // Вибір операцій
+    function set_sign(x) {
+      if (x == "+") {
+        flag = 0;
+        sign = "+";
+      }
+      if (x == "-") {
+        flag = 1;
+        sign = "-";
+      }
+      if (x == "*") {
+        flag = 2;
+        sign = "*";
+      }
+      return true;
+    }
+
+    // Визначити перший операнд
+    function f_operand() {
+      operand1 = Math.floor(Math.random() * max_value);
+      return parseInt(operand1);
+    }
+
+    // Визначити другий операнд
+    function s_operand() {
+      if (flag == 0) {
+        operand2 = Math.floor(Math.random() * (max_value - operand1));
+      }
+      if (flag == 1) {
+        operand2 = Math.floor(Math.random() * operand1);
+      }
+      if (flag == 2) {
+        operand2 = Math.floor(Math.random() * max_value);
+      }
+      return parseInt(operand2);
+    }
+
+    // Перевірити введення
+    function input_sign(x) {
+      if (x == 10) {
+        let userResult = parseInt(window.document.forms["test"].result.value);
+        let correctResult = 0;
+
+        if (flag == 0) {
+          correctResult = operand1 + operand2;
+        } else if (flag == 1) {
+          correctResult = operand1 - operand2;
+        } else if (flag == 2) {
+          correctResult = operand1 * operand2;
+        }
+
+        if (userResult === correctResult) {
+          window.document.forms["test"].r0.value = "Вірно!";
+        } else {
+          window.document.forms["test"].r0.value = "Спробуй ще!";
+          window.document.forms["test"].result.value = ""; // Очищення поля
+        }
+        return true;
+      }
+
+      input += x;
+      window.document.forms["test"].result.value = input;
+      return true;
+    }
+
+    // Генерація нової задачі
+    function main_calc() {
+      operand1 = f_operand();
+      window.document.forms["test"]["op1"].value = operand1;
+      operand2 = s_operand();
+      window.document.forms["test"]["op2"].value = operand2;
+      window.document.forms["test"]["s_sign"].value = sign;
+      input = "";
+      window.document.forms["test"].input = "";
+      window.document.forms["test"]["r0"].value = "???";
+      return true;
+    }
+  </script>
+
+  <body>
+    <h1 class="center">Математичний тест</h1>
+    <hr />
+    <form name="test">
+      <table class="center">
+        <tr>
+          <td>
+            <input
+              id="d1"
+              type="button"
+              class="button button1"
+              value="0-10"
+              onClick="max_value=10"
+            />
+          </td>
+          <td>
+            <input
+              id="d2"
+              type="button"
+              class="button button2"
+              value="0-20"
+              onClick="max_value=20"
+            />
+          </td>
+          <td>
+            <input
+              id="d3"
+              type="button"
+              class="button button3"
+              value="0-100"
+              onClick="max_value=100"
+            />
+          </td>
+          <td>
+            <input
+              id="d4"
+              type="button"
+              class="button button4"
+              value="0-26"
+              onClick="max_value=26"
+            />
+          </td>
+          <td>
+            <input
+              id="plus"
+              type="button"
+              class="button"
+              value="+"
+              onClick='set_sign("+")'
+            />
+          </td>
+          <td>
+            <input
+              id="minus"
+              type="button"
+              class="button"
+              value="-"
+              onClick='set_sign("-")'
+            />
+          </td>
+          <td>
+            <input
+              id="multiply"
+              type="button"
+              class="button"
+              value="*"
+              onClick='set_sign("*")'
+            />
+          </td>
+        </tr>
+      </table>
+      <hr />
+      <table class="center">
+        <tr>
+          <td><input id="op1" size="3" maxlength="3" /></td>
+          <td><input id="s_sign" size="1" maxlength="1" /></td>
+          <td><input id="op2" size="3" maxlength="3" /></td>
+          <td>=</td>
+          <td><input id="result" size="4" maxlength="4" /></td>
+          <td>
+            <input
+              id="award"
+              type="button"
+              class="button"
+              value="?"
+              onClick="main_calc()"
+            />
+          </td>
+          <td><input id="r0" value="???" /></td>
+        </tr>
+      </table>
+      <hr />
+      <table id="keyboard">
+        <tr>
+          <td>
+            <input
+              id="b1"
+              type="button"
+              class="button button1"
+              value="1"
+              onClick='input_sign("1")'
+            />
+          </td>
+          <td>
+            <input
+              id="b2"
+              type="button"
+              class="button button2"
+              value="2"
+              onClick='input_sign("2")'
+            />
+          </td>
+          <td>
+            <input
+              id="b3"
+              type="button"
+              class="button button3"
+              value="3"
+              onClick='input_sign("3")'
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              id="b4"
+              type="button"
+              class="button button1"
+              value="4"
+              onClick='input_sign("4")'
+            />
+          </td>
+          <td>
+            <input
+              id="b5"
+              type="button"
+              class="button button2"
+              value="5"
+              onClick='input_sign("5")'
+            />
+          </td>
+          <td>
+            <input
+              id="b6"
+              type="button"
+              class="button button3"
+              value="6"
+              onClick='input_sign("6")'
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              id="b7"
+              type="button"
+              class="button button1"
+              value="7"
+              onClick='input_sign("7")'
+            />
+          </td>
+          <td>
+            <input
+              id="b8"
+              type="button"
+              class="button button2"
+              value="8"
+              onClick='input_sign("8")'
+            />
+          </td>
+          <td>
+            <input
+              id="b9"
+              type="button"
+              class="button button3"
+              value="9"
+              onClick='input_sign("9")'
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              id="b0"
+              type="button"
+              class="button button1"
+              value="0"
+              onClick='input_sign("0")'
+            />
+          </td>
+          <td colspan="2">
+            <input
+              id="bs"
+              type="button"
+              class="button button5"
+              value="OK"
+              onClick='input_sign("10")'
+            />
+          </td>
+        </tr>
+      </table>
+    </form>
+    <hr />
+  </body>
+</html>
