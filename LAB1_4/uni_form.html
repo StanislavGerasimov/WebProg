@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Анкета для вступу до університету</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      select {
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .form-group {
+        display: flex;
+        gap: 15px;
+      }
+
+      .form-group div {
+        flex: 1;
+      }
+
+      button {
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #1976d2;
+      }
+
+      .data-list {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+
+      .data-item {
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .data-item button {
+        background-color: #f44336;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      .data-item button:hover {
+        background-color: #d32f2f;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Анкета для вступу до університету</h1>
+      <form action="#" method="post">
+        <!-- Особисті дані -->
+        <div class="form-group">
+          <div>
+            <label for="firstName">Ім'я</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div>
+            <label for="lastName">Прізвище</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div>
+            <label for="middleName">По батькові</label>
+            <input type="text" id="middleName" name="middleName" required />
+          </div>
+        </div>
+
+        <!-- Попереднє місце навчання -->
+        <label for="previousSchool">Попереднє місце навчання</label>
+        <input type="text" id="previousSchool" name="previousSchool" required />
+
+        <!-- Вибір факультету -->
+        <label for="faculty">Факультет</label>
+        <select id="faculty" name="faculty" required>
+          <option value="computerScience">Факультет комп'ютерних наук</option>
+          <option value="medicine">Факультет медицини</option>
+          <option value="law">Юридичний факультет</option>
+          <option value="business">Факультет бізнесу</option>
+          <option value="arts">Факультет мистецтв</option>
+        </select>
+
+        <!-- Кнопка відправки форми -->
+        <input type="submit" value="Подати заявку" />
+      </form>
+
+      <!-- Buttons for reading and deleting data -->
+      <button id="loadJSONData">Завантажити JSON дані</button>
+
+      <button id="deleteRecord">Видалити запис</button>
+
+      <!-- Displaying existing data -->
+      <div class="data-list" id="dataList">
+        <h2>Збережені записи:</h2>
+        <!-- Data will be dynamically inserted here -->
+      </div>
+    </div>
+
+    <!-- Importing the JavaScript file -->
+    <script src="form.js"></script>
+  </body>
+</html>

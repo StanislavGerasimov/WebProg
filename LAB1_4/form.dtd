@@ -1,0 +1,32 @@
+<!ELEMENT xhtml (head, body)>
+<!ATTLIST xhtml xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml">
+<!ATTLIST xhtml xmlns:xforms CDATA #FIXED "http://www.w3.org/2002/xforms">
+
+<!ELEMENT head (title, link*)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT link EMPTY>
+<!ATTLIST link rel CDATA #REQUIRED href CDATA #REQUIRED>
+
+<!ELEMENT body (div)>
+<!ELEMENT div (h1, form)>
+<!ATTLIST div class CDATA #REQUIRED>
+
+<!ELEMENT h1 (#PCDATA)>
+<!ELEMENT form (xforms:model, label*, xforms:input*, xforms:select1, xforms:submit)>
+<!ELEMENT label (#PCDATA)>
+<!ELEMENT xforms:model (xforms:instance)>
+<!ELEMENT xforms:instance (data)>
+<!ELEMENT data (user)>
+<!ELEMENT user (firstName, lastName, middleName, previousSchool, faculty)>
+<!ELEMENT firstName (#PCDATA)>
+<!ELEMENT lastName (#PCDATA)>
+<!ELEMENT middleName (#PCDATA)>
+<!ELEMENT previousSchool (#PCDATA)>
+<!ELEMENT faculty (#PCDATA)>
+
+<!ELEMENT xforms:input (xforms:label)>
+<!ELEMENT xforms:select1 (xforms:item*)>
+<!ELEMENT xforms:item (xforms:label, xforms:value)>
+<!ELEMENT xforms:label (#PCDATA)>
+<!ELEMENT xforms:value (#PCDATA)>
+<!ELEMENT xforms:submit (xforms:label)>

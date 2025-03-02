@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="form.xsl"?>
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "form.dtd">
+<xhtml xmlns="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.w3.org/2002/xforms">
+    <head>
+        <title>Анкета для вступу до університету</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Анкета для вступу до університету</h1>
+            <form xmlns:xforms="http://www.w3.org/2002/xforms">
+                <!-- Визначення даних -->
+                <xforms:model>
+                    <xforms:instance>
+                        <data>
+                            <user>
+                                <firstName></firstName>
+                                <lastName></lastName>
+                                <middleName></middleName>
+                                <previousSchool></previousSchool>
+                                <faculty></faculty>
+                            </user>
+                        </data>
+                    </xforms:instance>
+                </xforms:model>
+
+                <!-- Ім'я -->
+                <label for="firstName">Ім'я</label>
+                <xforms:input ref="user/firstName">
+                    <xforms:label>Ім'я</xforms:label>
+                </xforms:input>
+
+                <!-- Прізвище -->
+                <label for="lastName">Прізвище</label>
+                <xforms:input ref="user/lastName">
+                    <xforms:label>Прізвище</xforms:label>
+                </xforms:input>
+
+                <!-- По батькові -->
+                <label for="middleName">По батькові</label>
+                <xforms:input ref="user/middleName">
+                    <xforms:label>По батькові</xforms:label>
+                </xforms:input>
+
+                <!-- Попереднє місце навчання -->
+                <label for="previousSchool">Попереднє місце навчання</label>
+                <xforms:input ref="user/previousSchool">
+                    <xforms:label>Попереднє місце навчання</xforms:label>
+                </xforms:input>
+
+                <!-- Вибір факультету -->
+                <label for="faculty">Факультет</label>
+                <xforms:select1 ref="user/faculty">
+                    <xforms:item>
+                        <xforms:label>Факультет комп'ютерних наук</xforms:label>
+                        <xforms:value>computerScience</xforms:value>
+                    </xforms:item>
+                    <xforms:item>
+                        <xforms:label>Факультет медицини</xforms:label>
+                        <xforms:value>medicine</xforms:value>
+                    </xforms:item>
+                    <xforms:item>
+                        <xforms:label>Юридичний факультет</xforms:label>
+                        <xforms:value>law</xforms:value>
+                    </xforms:item>
+                    <xforms:item>
+                        <xforms:label>Факультет бізнесу</xforms:label>
+                        <xforms:value>business</xforms:value>
+                    </xforms:item>
+                    <xforms:item>
+                        <xforms:label>Факультет мистецтв</xforms:label>
+                        <xforms:value>arts</xforms:value>
+                    </xforms:item>
+                </xforms:select1>
+
+                <!-- Кнопка подачі заявки -->
+                <xforms:submit>
+                    <xforms:label>Подати заявку</xforms:label>
+                </xforms:submit>
+            </form>
+        </div>
+    </body>
+</xhtml>
