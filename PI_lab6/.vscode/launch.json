@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch PHP Server",
+            "type": "php",
+            "request": "launch",
+            "runtimeArgs": [
+                "-S",
+                "localhost:8000",
+                "-t",
+                "${workspaceRoot}"
+            ],
+            "port": 8000,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started"
+            }
+        }
+    ]
+}
