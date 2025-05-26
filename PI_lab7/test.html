@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Перевірка усного рахунку</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        .center {
+            text-align: center;
+            margin: auto;
+        }
+
+        #keyboard {
+            text-align: center;
+            margin: auto;
+            border: 2px solid;
+        }
+
+        /* Розфарбування кнопок */
+        .button {
+            background-color: lightblue;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .button1 { background-color: #ffcccb; }
+        .button2 { background-color: #ffecb3; }
+        .button3 { background-color: #c8e6c9; }
+        .button4 { background-color: #ffeb3b; }
+        .button5 { background-color: #80deea; }
+    </style>
+</head>
+<body>
+    <h1 class="center">Математичний тест</h1>
+    <hr />
+    <form name="test" action="calculate.php" method="post">
+        <input type="hidden" name="operand1" id="operand1">
+        <input type="hidden" name="operand2" id="operand2">
+        <input type="hidden" name="sign" id="sign">
+        
+        <table class="center">
+            <tr>
+                <td>
+                    <input type="submit" name="range" class="button button1" value="0-10">
+                </td>
+                <td>
+                    <input type="submit" name="range" class="button button2" value="0-20">
+                </td>
+                <td>
+                    <input type="submit" name="range" class="button button3" value="0-100">
+                </td>
+                <td>
+                    <input type="submit" name="range" class="button button4" value="0-26">
+                </td>
+                <td>
+                    <input type="submit" name="operation" class="button" value="+">
+                </td>
+                <td>
+                    <input type="submit" name="operation" class="button" value="-">
+                </td>
+                <td>
+                    <input type="submit" name="operation" class="button" value="*">
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <table class="center">
+            <tr>
+                <td><input name="display_op1" id="display_op1" size="3" maxlength="3" readonly></td>
+                <td><input name="display_sign" id="display_sign" size="1" maxlength="1" readonly></td>
+                <td><input name="display_op2" id="display_op2" size="3" maxlength="3" readonly></td>
+                <td>=</td>
+                <td><input type="number" name="user_result" id="user_result" size="4" maxlength="4"></td>
+                <td>
+                    <input type="submit" name="new_problem" class="button" value="?">
+                </td>
+                <td><input name="result_message" id="result_message" value="???" readonly></td>
+            </tr>
+        </table>
+        <hr />
+        <table id="keyboard">
+            <tr>
+                <td><button type="button" class="button button1" onclick="addDigit('1')">1</button></td>
+                <td><button type="button" class="button button2" onclick="addDigit('2')">2</button></td>
+                <td><button type="button" class="button button3" onclick="addDigit('3')">3</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="button button1" onclick="addDigit('4')">4</button></td>
+                <td><button type="button" class="button button2" onclick="addDigit('5')">5</button></td>
+                <td><button type="button" class="button button3" onclick="addDigit('6')">6</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="button button1" onclick="addDigit('7')">7</button></td>
+                <td><button type="button" class="button button2" onclick="addDigit('8')">8</button></td>
+                <td><button type="button" class="button button3" onclick="addDigit('9')">9</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="button button1" onclick="addDigit('0')">0</button></td>
+                <td colspan="2">
+                    <input type="submit" class="button button5" value="OK">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr />
+
+    <script>
+        function addDigit(digit) {
+            const input = document.getElementById('user_result');
+            input.value += digit;
+        }
+
+        // Initialize form with values from PHP (if set)
+        window.onload = function() {
+            <?php if (isset($_SESSION['operand1'])): ?>
+                document.getElementById('operand1').value = <?php echo $_SESSION['operand1']; ?>;
+                document.getElementById('display_op1').value = <?php echo $_SESSION['operand1']; ?>;
+            <?php endif; ?>
+            
+            <?php if (isset($_SESSION['operand2'])): ?>
+                document.getElementById('operand2').value = <?php echo $_SESSION['operand2']; ?>;
+                document.getElementById('display_op2').value = <?php echo $_SESSION['operand2']; ?>;
+            <?php endif; ?>
+            
+            <?php if (isset($_SESSION['sign'])): ?>
+                document.getElementById('sign').value = '<?php echo $_SESSION['sign']; ?>';
+                document.getElementById('display_sign').value = '<?php echo $_SESSION['sign']; ?>';
+            <?php endif; ?>
+            
+            <?php if (isset($_SESSION['result_message'])): ?>
+                document.getElementById('result_message').value = '<?php echo $_SESSION['result_message']; ?>';
+            <?php endif; ?>
+        };
+    </script>
+</body>
+</html>
