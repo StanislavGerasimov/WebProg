@@ -8,8 +8,6 @@ function App() {
     email: '',
     message: ''
   });
-  const [showJson, setShowJson] = useState(false);
-  const [jsonData, setJsonData] = useState('');
 
   // Fetch records on component mount
   useEffect(() => {
@@ -20,8 +18,12 @@ function App() {
     try {
       const response = await fetch('http://localhost:5000/api/records');
       const data = await response.json();
-      setRecords(data);
-      setJsonData(JSON.stringify(data, null, 2));
+      // Add showJson property to each record
+      const recordsWithJsonFlag = data.map(record => ({
+        ...record,
+        showJson: false
+      }));
+      setRecords(recordsWithJsonFlag);
     } catch (error) {
       console.error('Error fetching records:', error);
     }
@@ -48,8 +50,8 @@ function App() {
       
       if (response.ok) {
         const newRecord = await response.json();
-        setRecords(prev => [...prev, newRecord]);
-        setJsonData(JSON.stringify([...records, newRecord], null, 2));
+        // Add showJson property to new record
+        setRecords(prev => [...prev, {...newRecord, showJson: false}]);
         setFormData({ name: '', email: '', message: '' });
       }
     } catch (error) {
@@ -64,17 +66,19 @@ function App() {
       });
       
       if (response.ok) {
-        const updatedRecords = records.filter(record => record.id !== id);
-        setRecords(updatedRecords);
-        setJsonData(JSON.stringify(updatedRecords, null, 2));
+        setRecords(prev => prev.filter(record => record.id !== id));
       }
     } catch (error) {
       console.error('Error deleting record:', error);
     }
   };
 
-  const toggleJsonView = () => {
-    setShowJson(!showJson);
+  const toggleJsonView = (id) => {
+    setRecords(prev => prev.map(record => 
+      record.id === id 
+        ? {...record, showJson: !record.showJson} 
+        : record
+    ));
   };
 
   return (
@@ -116,20 +120,7 @@ function App() {
         
         <button type="submit" className="submit-btn">Submit</button>
       </form>
-
-      <div className="controls">
-        <button onClick={toggleJsonView} className="json-btn">
-          {showJson ? 'Hide JSON' : 'Show JSON'}
-        </button>
-      </div>
       
-      {showJson && (
-        <div className="json-viewer">
-          <h2>Raw JSON Data</h2>
-          <pre>{jsonData}</pre>
-        </div>
-      )}
-
       <div className="records-list">
         <h2>Records</h2>
         {records.length === 0 ? (
@@ -142,13 +133,27 @@ function App() {
                   <h3>{record.name}</h3>
                   <p>Email: {record.email}</p>
                   <p>Message: {record.message}</p>
+                  
+                  {record.showJson && (
+                    <div className="json-viewer">
+                      <pre>{JSON.stringify(record, null, 2)}</pre>
+                    </div>
+                  )}
                 </div>
-                <button 
-                  onClick={() => handleDelete(record.id)}
-                  className="delete-btn"
-                >
-                  Delete
-                </button>
+                <div className="record-actions">
+                  <button 
+                    onClick={() => toggleJsonView(record.id)}
+                    className="json-btn"
+                  >
+                    {record.showJson ? 'Hide JSON' : 'Show JSON'}
+                  </button>
+                  <button 
+                    onClick={() => handleDelete(record.id)}
+                    className="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
